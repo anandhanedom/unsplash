@@ -37,7 +37,7 @@ class ImagesPage extends Component {
       <div>
         <Header />
         {loading ? (
-          <CircularProgress style={{ marginTop: '100px' }} />
+          <CircularProgress style={{ marginTop: '100px' }} disableShrink />
         ) : (
           <Gallery images={filteredImages} />
         )}
