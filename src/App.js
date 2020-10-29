@@ -39,6 +39,7 @@ function App() {
             path="/images"
             component={ImagesPage}
           ></ProtectedRoute>
+          <Route path="*" component={() => <h1>404 NOT FOUND</h1>} />
         </Switch>
       </div>
     </ThemeProvider>

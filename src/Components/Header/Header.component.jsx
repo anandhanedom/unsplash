@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
   search: {
     position: 'relative',
-    borderRadius: theme.shape.borderRadius,
+    // borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.25),
@@ -201,10 +201,10 @@ const Header = (props) => {
           </Typography>
           <div
             className={classes.search}
-            style={{ borderRadius: '24px', border: '1px solid grey' }}
+            style={{ borderRadius: '24px', border: '1px solid #BDBDBD' }}
           >
             <div className={classes.searchIcon}>
-              <SearchIcon style={{ color: 'grey' }} />
+              <SearchIcon style={{ color: '#BDBDBD' }} />
             </div>
             <InputBase
               placeholder="Search by name"
@@ -212,6 +212,7 @@ const Header = (props) => {
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
+              style={{ color: '#333' }}
               inputProps={{ 'aria-label': 'search' }}
               onChange={(e) => props.handleSearchChange(e.target.value)}
             />
