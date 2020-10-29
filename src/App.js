@@ -2,6 +2,9 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
 
+//To be deleted
+import { ProtectedRoute } from './Components/ProtectedRoute/ProtectedRoute.component.jsx';
+
 //Pages
 import ImagesPage from './Pages/ImagesPage/ImagesPage.component.jsx';
 import SignIn from './Pages/Authentication/SignIn/Signin.component.jsx';
@@ -31,7 +34,11 @@ function App() {
         <Switch>
           <Route exact path="/" component={SignIn}></Route>
           <Route exact path="/signup" component={SignUp}></Route>
-          <Route exact path="/images" component={ImagesPage}></Route>
+          <ProtectedRoute
+            exact
+            path="/images"
+            component={ImagesPage}
+          ></ProtectedRoute>
         </Switch>
       </div>
     </ThemeProvider>

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+//To be deleted
+import auth from '../../../auth';
+
 //Material UI
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -65,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignInSide = () => {
+const SignInSide = (props) => {
   const classes = useStyles();
 
   return (
@@ -113,6 +116,11 @@ const SignInSide = () => {
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={() => {
+                auth.login(() => {
+                  props.history.push('/images');
+                });
+              }}
             >
               Sign In
             </Button>
