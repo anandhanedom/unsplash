@@ -3,6 +3,10 @@ import { ModalActionTypes } from './modal.types';
 const INITIAL_STATE = {
   modalOpen: false,
   modalType: '',
+
+  label: '',
+  password: '',
+  url: '',
 };
 
 const modalReducer = (state = INITIAL_STATE, action) => {

@@ -33,24 +33,13 @@ const imagesReducer = (state = INITIAL_STATE, action) => {
         fetchError: action.payload,
       };
 
-    // Uploading part
-    case ImagesActionTypes.UPLOAD_IMAGE_REQUEST:
+    case ImagesActionTypes.ADD_IMAGE:
       return {
         ...state,
-      };
-
-    case ImagesActionTypes.UPLOAD_IMAGE_SUCCESS:
-      return {
-        ...state,
-        uploadSuccess: action.payload,
-        uploadError: '',
-      };
-
-    case ImagesActionTypes.UPLOAD_IMAGE_FAILURE:
-      return {
-        ...state,
-        uploadError: action.payload,
-        uploadSuccess: '',
+        images: [
+          ...state.images,
+          { ...action.payload, id: state.images.length + 1 },
+        ],
       };
 
     default:
