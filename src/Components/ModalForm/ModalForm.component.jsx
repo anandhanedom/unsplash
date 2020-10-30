@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 //Actions
-import { toggleModal } from '../../Redux/header/header.actions.js';
+import { toggleModal } from '../../Redux/modal/modal.actions.js';
 
 //Material UI
 import { makeStyles } from '@material-ui/core/styles';

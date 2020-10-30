@@ -6,12 +6,14 @@ import { withRouter } from 'react-router-dom';
 import auth from '../../auth';
 
 //Actions
-import {
-  toggleModal,
-  handleSearchChange,
-  changeModalType,
-} from '../../Redux/header/header.actions.js';
+import { handleSearchChange } from '../../Redux/header/header.actions.js';
 
+import {
+  changeModalType,
+  toggleModal,
+} from '../../Redux/modal/modal.actions.js';
+
+//Material UI
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';

@@ -6,11 +6,13 @@ import { createStructuredSelector } from 'reselect';
 import ModalForm from '../ModalForm/ModalForm.component';
 
 //Selectors
-import { selectModalOpen } from '../../Redux/header/header.selectors.js';
-import { selectModalType } from '../../Redux/header/header.selectors.js';
+import {
+  selectModalType,
+  selectModalOpen,
+} from '../../Redux/modal/modal.selectors.js';
 
 //Actions
-import { toggleModal } from '../../Redux/header/header.actions.js';
+import { toggleModal } from '../../Redux/modal/modal.actions.js';
 
 //Material UI
 import { makeStyles } from '@material-ui/core/styles';

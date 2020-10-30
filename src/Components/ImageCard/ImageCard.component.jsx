@@ -6,9 +6,9 @@ import styles from './ImageCard.module.css';
 
 //Actions
 import {
-  toggleModal,
   changeModalType,
-} from '../../Redux/header/header.actions.js';
+  toggleModal,
+} from '../../Redux/modal/modal.actions.js';
 
 const ImageCard = (props) => {
   return (
