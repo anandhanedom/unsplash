@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 //Actions
 import { toggleModal } from '../../Redux/modal/modal.actions.js';
 
 //Material UI
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = (theme) => ({
   root: {
     '& > *': {
       width: '50vw',
@@ -24,102 +24,135 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
     marginTop: '30px',
   },
-}));
+});
 
-const ModalForm = (props) => {
-  const classes = useStyles();
-  let modalForm;
-
-  if (!props.type) {
-    modalForm = (
-      <div>
-        <h2 id="transition-modal-title">Are you sure?</h2>
-
-        <div>
-          <TextField
-            id="outlined-secondary"
-            label="Password"
-            type="password"
-            variant="outlined"
-            color="primary"
-            fullWidth={true}
-          />
-        </div>
-
-        <div className={classes.btnSpace}>
-          <Button
-            variant="contained"
-            style={{ textTransform: 'none', borderRadius: '24px' }}
-            onClick={props.toggleModal}
-            size="large"
-          >
-            Cancel
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            style={{ textTransform: 'none', borderRadius: '24px' }}
-            size="large"
-          >
-            Delete
-          </Button>
-        </div>
-      </div>
-    );
-  } else {
-    modalForm = (
-      <div>
-        <h2 id="transition-modal-title">Add a new photo</h2>
-
-        <div>
-          <TextField
-            id="outlined-secondary"
-            label="Label"
-            variant="outlined"
-            color="primary"
-            fullWidth={true}
-          />
-        </div>
-        <div style={{ marginTop: '30px' }}>
-          <TextField
-            id="outlined-secondary"
-            label="Photo URL"
-            variant="outlined"
-            color="primary"
-            fullWidth={true}
-          />
-        </div>
-        <div className={classes.btnSpace}>
-          <Button
-            variant="contained"
-            style={{ textTransform: 'none', borderRadius: '24px' }}
-            onClick={props.toggleModal}
-            size="large"
-          >
-            Cancel
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            style={{ textTransform: 'none', borderRadius: '24px' }}
-            size="large"
-          >
-            Submit
-          </Button>
-        </div>
-      </div>
-    );
+class ModalForm extends Component {
+  constructor() {
+    super();
+    this.state = {
+      label: '',
+      password: '',
+      url: '',
+    };
   }
 
-  return (
-    <form className={classes.root} noValidate autoComplete="off">
-      {modalForm}
-    </form>
-  );
-};
+  modalForm = null;
+
+  handleLabelChange = (e) => {
+    this.setState({ label: e.target.value });
+  };
+
+  handleUrlChange = (e) => {
+    this.setState({ url: e.target.value });
+  };
+
+  handlePasswordChange = (e) => {
+    this.setState({ password: e.target.value });
+  };
+
+  render() {
+    const { classes } = this.props;
+
+    // console.log(this.state);
+
+    let modalForm;
+
+    if (!this.props.type) {
+      modalForm = (
+        <div>
+          <h2 id="transition-modal-title">Are you sure?</h2>
+
+          <div>
+            <TextField
+              id="outlined-secondary"
+              label="Password"
+              type="password"
+              variant="outlined"
+              color="primary"
+              fullWidth={true}
+              onChange={this.handlePasswordChange}
+            />
+          </div>
+
+          <div className={classes.btnSpace}>
+            <Button
+              variant="contained"
+              style={{ textTransform: 'none', borderRadius: '24px' }}
+              onClick={this.props.toggleModal}
+              size="large"
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              style={{ textTransform: 'none', borderRadius: '24px' }}
+              size="large"
+            >
+              Delete
+            </Button>
+          </div>
+        </div>
+      );
+    } else {
+      modalForm = (
+        <div>
+          <h2 id="transition-modal-title">Add a new photo</h2>
+
+          <div>
+            <TextField
+              id="outlined-secondary"
+              label="Label"
+              variant="outlined"
+              color="primary"
+              fullWidth={true}
+              onChange={this.handleLabelChange}
+            />
+          </div>
+          <div style={{ marginTop: '30px' }}>
+            <TextField
+              id="outlined-secondary"
+              label="Photo URL"
+              variant="outlined"
+              color="primary"
+              fullWidth={true}
+              onChange={this.handleUrlChange}
+            />
+          </div>
+          <div className={classes.btnSpace}>
+            <Button
+              variant="contained"
+              style={{ textTransform: 'none', borderRadius: '24px' }}
+              onClick={this.props.toggleModal}
+              size="large"
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              style={{ textTransform: 'none', borderRadius: '24px' }}
+              size="large"
+            >
+              Submit
+            </Button>
+          </div>
+        </div>
+      );
+    }
+    return (
+      <form className={classes.root} noValidate autoComplete="off">
+        {modalForm}
+      </form>
+    );
+  }
+}
 
 const mapDispatchToProps = (dispatch) => ({
   toggleModal: () => dispatch(toggleModal()),
 });
 
-export default connect(null, mapDispatchToProps)(ModalForm);
+export default connect(
+  null,
+  mapDispatchToProps
+)(withStyles(useStyles)(ModalForm));
