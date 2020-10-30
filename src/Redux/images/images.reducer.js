@@ -38,7 +38,7 @@ const imagesReducer = (state = INITIAL_STATE, action) => {
         ...state,
         images: [
           ...state.images,
-          { ...action.payload, id: state.images.length + 1 },
+          { id: state.images.length + 1, ...action.payload },
         ],
       };
 

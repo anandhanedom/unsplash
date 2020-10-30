@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 //Actions
 import { toggleModal } from '../../Redux/modal/modal.actions.js';
+import { addImage } from '../../Redux/images/images.actions.js';
 
 //Material UI
 import { withStyles } from '@material-ui/styles';
@@ -129,6 +130,13 @@ class ModalForm extends Component {
               color="primary"
               style={{ textTransform: 'none', borderRadius: '24px' }}
               size="large"
+              onClick={() => {
+                this.props.addImage({
+                  image_name: this.state.label,
+                  url: this.state.url,
+                });
+                this.props.toggleModal();
+              }}
             >
               Submit
             </Button>
@@ -141,8 +149,6 @@ class ModalForm extends Component {
   }
 
   render() {
-    console.log(this.state);
-
     const modalForm = this.returnModalForm(this.props.type);
 
     return (
@@ -155,6 +161,7 @@ class ModalForm extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   toggleModal: () => dispatch(toggleModal()),
+  addImage: (img) => dispatch(addImage(img)),
 });
 
 export default connect(
