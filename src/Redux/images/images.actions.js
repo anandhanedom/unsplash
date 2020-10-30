@@ -22,27 +22,6 @@ export const fetchImagesFailure = (error) => {
   };
 };
 
-// Image add actions
-export const uploadImageRequest = () => {
-  return {
-    type: ImagesActionTypes.UPLOAD_IMAGE_REQUEST,
-  };
-};
-
-export const uploadImageSuccess = (res) => {
-  return {
-    type: ImagesActionTypes.UPLOAD_IMAGE_SUCCESS,
-    payload: res,
-  };
-};
-
-export const uploadImageFailure = (error) => {
-  return {
-    type: ImagesActionTypes.UPLOAD_IMAGE_FAILURE,
-    payload: error,
-  };
-};
-
 //Thunk handled functions
 export const fetchImages = () => {
   return function (dispatch) {
@@ -55,20 +34,6 @@ export const fetchImages = () => {
       })
       .catch(() => {
         dispatch(fetchImagesFailure('Oops! Something went wrong.'));
-      });
-  };
-};
-
-export const uploadImage = (img) => {
-  return function (dispatch) {
-    dispatch(uploadImageRequest());
-    axios
-      .post('http://localhost:3000/images', img)
-      .then(() => {
-        dispatch(uploadImageSuccess('Image added successfully!'));
-      })
-      .catch(() => {
-        dispatch(uploadImageFailure('Oops! Something went wrong.'));
       });
   };
 };

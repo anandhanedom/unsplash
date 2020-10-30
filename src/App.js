@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
 
-//To be deleted
+//Maybe be deleted
 import { ProtectedRoute } from './Components/ProtectedRoute/ProtectedRoute.component.jsx';
 
 //Pages
@@ -39,6 +39,7 @@ function App() {
             path="/images"
             component={ImagesPage}
           ></ProtectedRoute>
+          <Route path="*" component={() => <h1>404 NOT FOUND</h1>} />
         </Switch>
       </div>
     </ThemeProvider>
