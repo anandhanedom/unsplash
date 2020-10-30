@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 //Actions
 import { toggleModal } from '../../Redux/modal/modal.actions.js';
@@ -135,7 +136,13 @@ class ModalForm extends Component {
                   image_name: this.state.label,
                   url: this.state.url,
                 });
-                this.props.toggleModal();
+
+                axios
+                  .post('http://localhost:3000/images', {
+                    image_name: this.state.label,
+                    url: this.state.url,
+                  })
+                  .then(() => this.props.toggleModal());
               }}
             >
               Submit
