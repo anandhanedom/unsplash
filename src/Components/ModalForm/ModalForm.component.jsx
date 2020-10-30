@@ -50,14 +50,10 @@ class ModalForm extends Component {
     this.setState({ password: e.target.value });
   };
 
-  render() {
-    const { classes } = this.props;
-
-    // console.log(this.state);
-
+  returnModalForm(type) {
     let modalForm;
 
-    if (!this.props.type) {
+    if (!type) {
       modalForm = (
         <div>
           <h2 id="transition-modal-title">Are you sure?</h2>
@@ -74,7 +70,7 @@ class ModalForm extends Component {
             />
           </div>
 
-          <div className={classes.btnSpace}>
+          <div className={this.props.classes.btnSpace}>
             <Button
               variant="contained"
               style={{ textTransform: 'none', borderRadius: '24px' }}
@@ -119,7 +115,7 @@ class ModalForm extends Component {
               onChange={this.handleUrlChange}
             />
           </div>
-          <div className={classes.btnSpace}>
+          <div className={this.props.classes.btnSpace}>
             <Button
               variant="contained"
               style={{ textTransform: 'none', borderRadius: '24px' }}
@@ -140,8 +136,17 @@ class ModalForm extends Component {
         </div>
       );
     }
+
+    return modalForm;
+  }
+
+  render() {
+    console.log(this.state);
+
+    const modalForm = this.returnModalForm(this.props.type);
+
     return (
-      <form className={classes.root} noValidate autoComplete="off">
+      <form className={this.props.classes.root} noValidate autoComplete="off">
         {modalForm}
       </form>
     );
