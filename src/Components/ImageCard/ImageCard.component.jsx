@@ -10,6 +10,8 @@ import {
   toggleModal,
 } from '../../Redux/modal/modal.actions.js';
 
+import { setCurrentImage } from '../../Redux/images/images.actions.js';
+
 const ImageCard = (props) => {
   return (
     <div className={styles.card}>
@@ -21,6 +23,7 @@ const ImageCard = (props) => {
           className={styles.deleteBtn}
           onClick={() => {
             props.changeModalType(false);
+            props.setCurrentImage(props.imgId);
             props.toggleModal();
           }}
         >
@@ -37,6 +40,7 @@ const ImageCard = (props) => {
 const mapDispatchToProps = (dispatch) => ({
   toggleModal: () => dispatch(toggleModal()),
   changeModalType: (type) => dispatch(changeModalType(type)),
+  setCurrentImage: (imgId) => dispatch(setCurrentImage(imgId)),
 });
 
 export default connect(null, mapDispatchToProps)(ImageCard);

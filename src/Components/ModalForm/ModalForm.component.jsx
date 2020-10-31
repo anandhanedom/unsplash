@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { createStructuredSelector } from 'reselect';
 
 //Actions
 import { toggleModal } from '../../Redux/modal/modal.actions.js';
-import { addImage } from '../../Redux/images/images.actions.js';
+import { addImage, removeImage } from '../../Redux/images/images.actions.js';
+
+//Selectors
+import { selectCurrentImgId } from '../../Redux/images/images.selectors.js';
 
 //Material UI
 import { withStyles } from '@material-ui/styles';
@@ -86,6 +90,10 @@ class ModalForm extends Component {
               color="secondary"
               style={{ textTransform: 'none', borderRadius: '24px' }}
               size="large"
+              onClick={() => {
+                this.props.removeImage(this.props.currentImgId);
+                this.props.toggleModal();
+              }}
             >
               Delete
             </Button>
@@ -169,9 +177,14 @@ class ModalForm extends Component {
 const mapDispatchToProps = (dispatch) => ({
   toggleModal: () => dispatch(toggleModal()),
   addImage: (img) => dispatch(addImage(img)),
+  removeImage: (imgId) => dispatch(removeImage(imgId)),
+});
+
+const mapStateToProps = createStructuredSelector({
+  currentImgId: selectCurrentImgId,
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(withStyles(useStyles)(ModalForm));
