@@ -42,6 +42,12 @@ const imagesReducer = (state = INITIAL_STATE, action) => {
         ],
       };
 
+    case ImagesActionTypes.REMOVE_IMAGE:
+      return {
+        ...state,
+        images: state.images.filter((img) => img.id !== action.payload),
+      };
+
     default:
       return state;
   }
