@@ -22,6 +22,14 @@ export const fetchImagesFailure = (error) => {
   };
 };
 
+//Add images
+export const addImage = (img) => {
+  return {
+    type: ImagesActionTypes.ADD_IMAGE,
+    payload: img,
+  };
+};
+
 //Thunk handled functions
 export const fetchImages = () => {
   return function (dispatch) {
