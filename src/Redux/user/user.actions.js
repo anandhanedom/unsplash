@@ -1,38 +1,30 @@
-import { HeaderActionTypes } from './user.types';
 import axios from 'axios';
+import { UserActionTypes } from './user.types';
 
-const setUser = (payload) => {
-  return {
-    type: HeaderActionTypes.SET_USER,
-    payload,
-  };
+const setUser = () => ({ type: UserActionTypes.SET_USER });
+
+export const signOut = () => ({ type: UserActionTypes.SIGN_OUT });
+
+// Methods
+
+export const signIn = (userInfo) => (dispatch) => {
+  axios.post('http://localhost:3000/signin', userInfo).then((res) => {
+    //       200 OK
+    // {
+    //   "accessToken": "xxx.xxx.xxx"
+    // }
+    localStorage.setItem('token', res.data.token);
+    dispatch(setUser());
+  });
 };
 
-export const logUserOut = () => ({ type: HeaderActionTypes.LOG_OUT });
-
-export const fetchUser = (userInfo) => {
-  return function (dispatch) {
-    axios.post('http://localhost:3000/login', userInfo).then((res) => {
-      localStorage.setItem('token', res.data.token);
-      dispatch(setUser(res.data.user));
-    });
-  };
-};
-
-export const signUserUp = (userInfo) => {
-  return function (dispatch) {
-    axios.post('http://localhost:3000/users', userInfo).then((res) => {
-      localStorage.setItem('token', res.data.token);
-      dispatch(setUser(res.data.user));
-    });
-  };
-};
-
-export const autoLogin = () => {
-  return function (dispatch) {
-    axios.post('http://localhost:3000/auto_login').then((res) => {
-      localStorage.setItem('token', res.data.token);
-      dispatch(setUser(res.data.user));
-    });
-  };
+export const signUp = (userInfo) => (dispatch) => {
+  axios.post('http://localhost:3000/register', userInfo).then((res) => {
+    //     201 Created
+    // {
+    //   "accessToken": "xxx.xxx.xxx"
+    // }
+    localStorage.setItem('token', res.data.accessToken);
+    dispatch(setUser());
+  });
 };

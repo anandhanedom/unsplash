@@ -1,4 +1,7 @@
 import React from 'react';
+import axios from 'axios';
+
+//Material UI
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -24,6 +27,12 @@ function Copyright() {
       {'.'}
     </Typography>
   );
+}
+
+function signUp() {
+  const email = document.getElementById('email');
+  const password = document.getElementById('password');
+  axios.post('http://localhost:3000').then((res) => res.data);
 }
 
 const useStyles = makeStyles((theme) => ({
