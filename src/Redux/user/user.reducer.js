@@ -1,27 +1,22 @@
-import { HeaderActionTypes } from './user.types';
+import { UserActionTypes } from './user.types';
 
-const INITIAL_STATE = {
+const defaultState = {
   loggedIn: false,
   user: {},
 };
 
-const userReducer = (state = INITIAL_STATE, action) => {
+const userReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case HeaderActionTypes.SET_USER:
+    case UserActionTypes.SET_USER:
       return {
-        ...state,
-        user: { ...action.payload },
         loggedIn: true,
       };
-
-    case HeaderActionTypes.LOG_OUT:
+    case UserActionTypes.SIGN_OUT:
       localStorage.clear();
       return {
-        ...state,
         loggedIn: false,
         user: {},
       };
-
     default:
       return state;
   }
