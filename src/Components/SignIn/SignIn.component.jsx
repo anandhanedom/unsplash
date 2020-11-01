@@ -24,7 +24,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Fake Unsplash
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -108,7 +108,7 @@ const SignIn = (props) => {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link href="#" variant="body2" style={{ color: '#000' }}>
                 Forgot password?
               </Link>
             </Grid>
