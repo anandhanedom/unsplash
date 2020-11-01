@@ -196,10 +196,10 @@ const Header = (props) => {
             onClick={handleProfileMenuOpen}
             color="inherit"
           >
-            <AccountCircle />
+            <AccountCircle style={{ fontSize: 35 }} />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            My Unsplash
+            John Doe
           </Typography>
           <div
             className={classes.search}
