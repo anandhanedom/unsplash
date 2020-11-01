@@ -73,7 +73,6 @@ class ModalForm extends Component {
               color="primary"
               fullWidth={true}
               onChange={this.handlePasswordChange}
-              value={this.state.password}
             />
           </div>
 
@@ -122,7 +121,6 @@ class ModalForm extends Component {
               color="primary"
               fullWidth={true}
               onChange={this.handleLabelChange}
-              value={this.state.label}
             />
           </div>
           <div style={{ marginTop: '30px' }}>
@@ -133,7 +131,6 @@ class ModalForm extends Component {
               color="primary"
               fullWidth={true}
               onChange={this.handleUrlChange}
-              value={this.state.url}
             />
           </div>
           <div className={this.props.classes.btnSpace}>
