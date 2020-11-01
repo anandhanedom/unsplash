@@ -3,7 +3,7 @@ import { UserActionTypes } from './user.types';
 
 const setUser = () => ({ type: UserActionTypes.SET_USER });
 
-export const signOut = () => ({ type: UserActionTypes.SIGN_OUT });
+const signout = () => ({ type: UserActionTypes.SIGN_OUT });
 
 // Methods
 
@@ -27,4 +27,9 @@ export const signUp = (userInfo) => (dispatch) => {
     localStorage.setItem('token', res.data.accessToken);
     dispatch(setUser());
   });
+};
+
+export const signOut = () => (dispatch) => {
+  localStorage.clear();
+  dispatch(signout());
 };
