@@ -148,15 +148,16 @@ class ModalForm extends Component {
               style={{ textTransform: 'none', borderRadius: '24px' }}
               size="large"
               onClick={() => {
-                this.props.addImage({
-                  image_name: this.state.label,
-                  url: this.state.url,
-                });
-
                 axios
                   .post('http://localhost:3000/images', {
                     image_name: this.state.label,
                     url: this.state.url,
+                  })
+                  .then(() => {
+                    this.props.addImage({
+                      image_name: this.state.label,
+                      url: this.state.url,
+                    });
                   })
                   .then(() => this.props.toggleModal());
               }}
