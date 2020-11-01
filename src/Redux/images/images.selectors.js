@@ -16,3 +16,8 @@ export const selectError = createSelector(
   [selectImage],
   (image) => image.fetchError
 );
+
+export const selectCurrentImgId = createSelector(
+  [selectImage],
+  (image) => image.currentImgId
+);

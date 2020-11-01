@@ -30,6 +30,22 @@ export const addImage = (img) => {
   };
 };
 
+//Remove images
+export const removeImage = (imgId) => {
+  return {
+    type: ImagesActionTypes.REMOVE_IMAGE,
+    payload: imgId,
+  };
+};
+
+//Set current image
+export const setCurrentImage = (imgId) => {
+  return {
+    type: ImagesActionTypes.SET_CURRENT_IMAGE,
+    payload: imgId,
+  };
+};
+
 //Thunk handled functions
 export const fetchImages = () => {
   return function (dispatch) {

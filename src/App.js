@@ -2,13 +2,13 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
 
-//Maybe be deleted
 import { ProtectedRoute } from './Components/ProtectedRoute/ProtectedRoute.component.jsx';
+
+
 
 //Pages
 import ImagesPage from './Pages/ImagesPage/ImagesPage.component.jsx';
-import SignIn from './Pages/Authentication/SignIn/Signin.component.jsx';
-import SignUp from './Pages/Authentication/SignUp/Signup.component.jsx';
+import AuthPage from './Pages/Auth/Auth.component.jsx';
 
 //Material UI
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -32,8 +32,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="App">
         <Switch>
-          <Route exact path="/" component={SignIn}></Route>
-          <Route exact path="/signup" component={SignUp}></Route>
+          <Route exact path="/" component={AuthPage}></Route>
           <ProtectedRoute
             exact
             path="/images"

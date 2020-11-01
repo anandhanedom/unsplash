@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { createStructuredSelector } from 'reselect';
 
 //Actions
 import { toggleModal } from '../../Redux/modal/modal.actions.js';
-import { addImage } from '../../Redux/images/images.actions.js';
+import { addImage, removeImage } from '../../Redux/images/images.actions.js';
+
+//Selectors
+import { selectCurrentImgId } from '../../Redux/images/images.selectors.js';
 
 //Material UI
 import { withStyles } from '@material-ui/styles';
@@ -69,6 +73,7 @@ class ModalForm extends Component {
               color="primary"
               fullWidth={true}
               onChange={this.handlePasswordChange}
+              value={this.state.password}
             />
           </div>
 
@@ -86,6 +91,18 @@ class ModalForm extends Component {
               color="secondary"
               style={{ textTransform: 'none', borderRadius: '24px' }}
               size="large"
+              onClick={() => {
+                axios
+                  .delete(
+                    `http://localhost:3000/images/${this.props.currentImgId}`
+                  )
+                  .then(() => {
+                    this.props.removeImage(this.props.currentImgId);
+                  })
+                  .then(() => {
+                    this.props.toggleModal();
+                  });
+              }}
             >
               Delete
             </Button>
@@ -105,6 +122,7 @@ class ModalForm extends Component {
               color="primary"
               fullWidth={true}
               onChange={this.handleLabelChange}
+              value={this.state.label}
             />
           </div>
           <div style={{ marginTop: '30px' }}>
@@ -115,6 +133,7 @@ class ModalForm extends Component {
               color="primary"
               fullWidth={true}
               onChange={this.handleUrlChange}
+              value={this.state.url}
             />
           </div>
           <div className={this.props.classes.btnSpace}>
@@ -132,15 +151,16 @@ class ModalForm extends Component {
               style={{ textTransform: 'none', borderRadius: '24px' }}
               size="large"
               onClick={() => {
-                this.props.addImage({
-                  image_name: this.state.label,
-                  url: this.state.url,
-                });
-
                 axios
                   .post('http://localhost:3000/images', {
                     image_name: this.state.label,
                     url: this.state.url,
+                  })
+                  .then(() => {
+                    this.props.addImage({
+                      image_name: this.state.label,
+                      url: this.state.url,
+                    });
                   })
                   .then(() => this.props.toggleModal());
               }}
@@ -169,9 +189,14 @@ class ModalForm extends Component {
 const mapDispatchToProps = (dispatch) => ({
   toggleModal: () => dispatch(toggleModal()),
   addImage: (img) => dispatch(addImage(img)),
+  removeImage: (imgId) => dispatch(removeImage(imgId)),
+});
+
+const mapStateToProps = createStructuredSelector({
+  currentImgId: selectCurrentImgId,
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(withStyles(useStyles)(ModalForm));

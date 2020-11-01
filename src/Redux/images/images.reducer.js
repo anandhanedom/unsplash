@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   fetchError: '',
   uploadSuccess: '',
   uploadError: '',
+  currentImgId: null,
 };
 
 const imagesReducer = (state = INITIAL_STATE, action) => {
@@ -40,6 +41,18 @@ const imagesReducer = (state = INITIAL_STATE, action) => {
           ...state.images,
           { id: state.images.length + 1, ...action.payload },
         ],
+      };
+
+    case ImagesActionTypes.REMOVE_IMAGE:
+      return {
+        ...state,
+        images: state.images.filter((img) => img.id !== action.payload),
+      };
+
+    case ImagesActionTypes.SET_CURRENT_IMAGE:
+      return {
+        ...state,
+        currentImgId: action.payload,
       };
 
     default:
