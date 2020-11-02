@@ -1,16 +1,20 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
 
-import auth from '../../auth';
+//Selectors
+import { selectIsLoggedIn } from '../../Redux/user/user.selectors';
 
-export const ProtectedRoute = ({ component: Component, ...rest }) => {
+const ProtectedRoute = ({ component: Component, isLoggedIn, ...rest }) => {
   return (
     <Route
       {...rest}
       render={(props) => {
-        if (auth.isAuthenticated()) return <Component {...props} />;
+        console.log(isLoggedIn);
+        if (isLoggedIn) return <Component {...props} />;
         else
-          return ( 
+          return (
             <Redirect
               to={{
                 pathname: '/',
@@ -24,3 +28,9 @@ export const ProtectedRoute = ({ component: Component, ...rest }) => {
     />
   );
 };
+
+const mapStateToProps = createStructuredSelector({
+  isLoggedIn: selectIsLoggedIn,
+});
+
+export default connect(mapStateToProps, null)(ProtectedRoute);

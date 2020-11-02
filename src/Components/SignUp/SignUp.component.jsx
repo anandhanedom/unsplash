@@ -1,5 +1,8 @@
 import React from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+
+//Actions
+import { signUp } from '../../Redux/user/user.actions';
 
 //Material UI
 import Avatar from '@material-ui/core/Avatar';
@@ -27,12 +30,6 @@ function Copyright() {
       {'.'}
     </Typography>
   );
-}
-
-function signUp() {
-  const email = document.getElementById('email');
-  const password = document.getElementById('password');
-  axios.post('http://localhost:3000').then((res) => res.data);
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -129,6 +126,12 @@ const SignUp = (props) => {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={() => {
+              props.signUp({
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+              });
+            }}
           >
             Sign Up
           </Button>
@@ -148,4 +151,8 @@ const SignUp = (props) => {
   );
 };
 
-export default SignUp;
+const mapDispatchToProps = (dispatch) => ({
+  signUp: (userInfo) => dispatch(signUp(userInfo)),
+});
+
+export default connect(null, mapDispatchToProps)(SignUp);
