@@ -10,15 +10,18 @@ const signout = () => {
 };
 
 export const signIn = (userInfo) => (dispatch) => {
-  axios.post('http://localhost:3000/signin', userInfo).then((res) => {
-    localStorage.setItem('token', res.data.token);
-    dispatch(setuser());
-  });
+  axios
+    .post('signin', userInfo)
+    .then((res) => {
+      localStorage.setItem('token', res.data.accessToken);
+      dispatch(setuser());
+    })
+    .catch((err) => console.log(err));
 };
 
 export const signUp = (userInfo) => (dispatch) => {
   axios
-    .post('http://localhost:3000/register', userInfo)
+    .post('register', userInfo)
     .then((res) => {
       localStorage.setItem('token', res.data.accessToken);
     })

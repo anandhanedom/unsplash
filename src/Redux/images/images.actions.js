@@ -51,7 +51,7 @@ export const fetchImages = () => {
   return function (dispatch) {
     dispatch(fetchImagesRequest());
     axios
-      .get('http://localhost:3000/images')
+      .get('images')
       .then((res) => {
         const images = res.data;
         dispatch(fetchImagesSuccess(images));
