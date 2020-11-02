@@ -92,9 +92,7 @@ class ModalForm extends Component {
               size="large"
               onClick={() => {
                 axios
-                  .delete(
-                    `http://localhost:3000/images/${this.props.currentImgId}`
-                  )
+                  .delete(`images/${this.props.currentImgId}`)
                   .then(() => {
                     this.props.removeImage(this.props.currentImgId);
                   })
@@ -149,7 +147,7 @@ class ModalForm extends Component {
               size="large"
               onClick={() => {
                 axios
-                  .post('http://localhost:3000/images', {
+                  .post('images', {
                     image_name: this.state.label,
                     url: this.state.url,
                   })

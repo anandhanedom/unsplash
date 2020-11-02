@@ -10,7 +10,7 @@ const signout = () => {
 };
 
 export const signIn = (userInfo) => (dispatch) => {
-  axios.post('http://localhost:3000/signin', userInfo).then((res) => {
+  axios.post('signin', userInfo).then((res) => {
     localStorage.setItem('token', res.data.token);
     dispatch(setuser());
   });
@@ -18,7 +18,7 @@ export const signIn = (userInfo) => (dispatch) => {
 
 export const signUp = (userInfo) => (dispatch) => {
   axios
-    .post('http://localhost:3000/register', userInfo)
+    .post('register', userInfo)
     .then((res) => {
       localStorage.setItem('token', res.data.accessToken);
     })
