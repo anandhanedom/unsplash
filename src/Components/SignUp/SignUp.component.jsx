@@ -127,12 +127,12 @@ const SignUp = (props) => {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={() => {
-              props.signUp({
+            onClick={async () => {
+              await props.signUp({
                 email: document.getElementById('email').value,
                 password: document.getElementById('password').value,
               });
-              props.history.push('/images');
+              await props.history.push('/images');
             }}
           >
             Sign Up
