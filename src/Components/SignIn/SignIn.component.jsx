@@ -54,7 +54,13 @@ const useStyles = (theme) => ({
 });
 
 class SignIn extends Component {
-  componentDidMount() {}
+  signin = async () => {
+    await this.props.signIn({
+      email: document.getElementById('email').value,
+      password: document.getElementById('password').value,
+    });
+    this.props.history.push('/images');
+  };
 
   render() {
     const { classes } = this.props;
@@ -107,13 +113,7 @@ class SignIn extends Component {
               //   });
               // }}
 
-              onClick={async () => {
-                await this.props.signIn({
-                  email: document.getElementById('email').value,
-                  password: document.getElementById('password').value,
-                });
-                await this.props.history.push('/images');
-              }}
+              onClick={this.signin}
             >
               Sign In
             </Button>

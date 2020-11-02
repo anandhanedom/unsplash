@@ -14,6 +14,8 @@ export const signIn = (userInfo) => (dispatch) => {
     .post('signin', userInfo)
     .then((res) => {
       localStorage.setItem('token', res.data.accessToken);
+    })
+    .then(() => {
       dispatch(setuser());
     })
     .catch((err) => console.log(err));

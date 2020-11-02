@@ -56,6 +56,14 @@ const useStyles = makeStyles((theme) => ({
 const SignUp = (props) => {
   const classes = useStyles();
 
+  const signup = async () => {
+    await props.signUp({
+      email: document.getElementById('email').value,
+      password: document.getElementById('password').value,
+    });
+    props.history.push('/images');
+  };
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -127,13 +135,7 @@ const SignUp = (props) => {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={async () => {
-              await props.signUp({
-                email: document.getElementById('email').value,
-                password: document.getElementById('password').value,
-              });
-              await props.history.push('/images');
-            }}
+            onClick={signup}
           >
             Sign Up
           </Button>
