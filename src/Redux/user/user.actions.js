@@ -13,7 +13,7 @@ export const signIn = (userInfo) => (dispatch) => {
   axios
     .post('signin', userInfo)
     .then((res) => {
-      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('token', res.data.accessToken);
       dispatch(setuser());
     })
     .catch((err) => console.log(err));

@@ -20,9 +20,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
-//To be deleted
-import auth from '../../auth';
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -110,11 +107,12 @@ class SignIn extends Component {
               //   });
               // }}
 
-              onClick={() => {
-                this.props.signIn({
+              onClick={async () => {
+                await this.props.signIn({
                   email: document.getElementById('email').value,
                   password: document.getElementById('password').value,
                 });
+                await this.props.history.push('/images');
               }}
             >
               Sign In
@@ -148,6 +146,7 @@ const mapDispatchToProps = (dispatch) => ({
   signIn: (userInfo) => dispatch(signIn(userInfo)),
 });
 
-export default withRouter(
-  connect(null, mapDispatchToProps)(withStyles(useStyles)(SignIn))
-);
+export default connect(
+  null,
+  mapDispatchToProps
+)(withRouter(withStyles(useStyles)(SignIn)));

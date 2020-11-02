@@ -2,9 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-//To be deleted
-import auth from '../../auth';
-
 //Actions
 import { handleSearchChange } from '../../Redux/header/header.actions.js';
 
@@ -128,9 +125,6 @@ const Header = (props) => {
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem
         onClick={() => {
-          // auth.logout(() => {
-          //
-          // });
           handleMenuClose();
           localStorage.clear();
           props.history.push('/');

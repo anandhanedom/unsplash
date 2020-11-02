@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 //Actions
 import { signUp } from '../../Redux/user/user.actions';
@@ -131,6 +132,7 @@ const SignUp = (props) => {
                 email: document.getElementById('email').value,
                 password: document.getElementById('password').value,
               });
+              props.history.push('/images');
             }}
           >
             Sign Up
@@ -155,4 +157,4 @@ const mapDispatchToProps = (dispatch) => ({
   signUp: (userInfo) => dispatch(signUp(userInfo)),
 });
 
-export default connect(null, mapDispatchToProps)(SignUp);
+export default connect(null, mapDispatchToProps)(withRouter(SignUp));
