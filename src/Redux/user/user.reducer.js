@@ -10,7 +10,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case UserActionTypes.SET_USER:
       return {
         ...state,
-        loggedIn: false,
+        loggedIn: true,
       };
     case UserActionTypes.SIGN_OUT:
       localStorage.clear();
