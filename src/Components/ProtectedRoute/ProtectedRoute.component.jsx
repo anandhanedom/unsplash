@@ -12,7 +12,7 @@ const ProtectedRoute = ({ component: Component, isLoggedIn, ...rest }) => {
       {...rest}
       render={(props) => {
         console.log(isLoggedIn);
-        if (isLoggedIn) return <Component {...props} />;
+        if (localStorage.getItem('token')) return <Component {...props} />;
         else
           return (
             <Redirect

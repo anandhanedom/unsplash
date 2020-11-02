@@ -128,10 +128,12 @@ const Header = (props) => {
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem
         onClick={() => {
-          auth.logout(() => {
-            props.history.push('/');
-          });
+          // auth.logout(() => {
+          //
+          // });
           handleMenuClose();
+          localStorage.clear();
+          props.history.push('/');
         }}
       >
         Logout

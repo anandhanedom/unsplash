@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+//Actions
+import { signIn } from '../../Redux/user/user.actions.js';
 
 //MAterial UI
 import { withStyles } from '@material-ui/styles';
@@ -14,7 +18,6 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 //To be deleted
@@ -101,9 +104,16 @@ class SignIn extends Component {
               variant="contained"
               color="primary"
               className={classes.submit}
+              // onClick={() => {
+              //   auth.login(() => {
+              //     this.props.history.push('/images');
+              //   });
+              // }}
+
               onClick={() => {
-                auth.login(() => {
-                  this.props.history.push('/images');
+                this.props.signIn({
+                  email: document.getElementById('email').value,
+                  password: document.getElementById('password').value,
                 });
               }}
             >
@@ -134,4 +144,10 @@ class SignIn extends Component {
   }
 }
 
-export default withRouter(withStyles(useStyles)(SignIn));
+const mapDispatchToProps = (dispatch) => ({
+  signIn: (userInfo) => dispatch(signIn(userInfo)),
+});
+
+export default withRouter(
+  connect(null, mapDispatchToProps)(withStyles(useStyles)(SignIn))
+);
