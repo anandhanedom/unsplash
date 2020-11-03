@@ -119,7 +119,7 @@ class SignIn extends Component {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" style={{ color: '#000' }}>
                   Forgot password?
                 </Link>
               </Grid>
