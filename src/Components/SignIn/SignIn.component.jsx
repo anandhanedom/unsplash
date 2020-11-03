@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 //Actions
-import { signIn } from '../../Redux/user/user.actions.js';
 
 //MAterial UI
 import { withStyles } from '@material-ui/styles';
@@ -54,14 +51,6 @@ const useStyles = (theme) => ({
 });
 
 class SignIn extends Component {
-  signin = async () => {
-    await this.props.signIn({
-      email: document.getElementById('email').value,
-      password: document.getElementById('password').value,
-    });
-    this.props.history.push('/images');
-  };
-
   render() {
     const { classes } = this.props;
     return (
@@ -107,13 +96,6 @@ class SignIn extends Component {
               variant="contained"
               color="primary"
               className={classes.submit}
-              // onClick={() => {
-              //   auth.login(() => {
-              //     this.props.history.push('/images');
-              //   });
-              // }}
-
-              onClick={this.signin}
             >
               Sign In
             </Button>
@@ -142,11 +124,4 @@ class SignIn extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  signIn: (userInfo) => dispatch(signIn(userInfo)),
-});
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(withRouter(withStyles(useStyles)(SignIn)));
+export default withStyles(useStyles)(SignIn);

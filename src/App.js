@@ -2,8 +2,6 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
 
-import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute.component.jsx';
-
 //Pages
 import ImagesPage from './Pages/ImagesPage/ImagesPage.component.jsx';
 import AuthPage from './Pages/Auth/Auth.component.jsx';
@@ -30,12 +28,8 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="App">
         <Switch>
-          <Route exact path="/" component={AuthPage}></Route>
-          <ProtectedRoute
-            exact
-            path="/images"
-            component={ImagesPage}
-          ></ProtectedRoute>
+          <Route exact path="/" component={ImagesPage} />
+          <Route exact path="/auth" component={AuthPage} />
           <Route path="*" component={() => <h1>404 NOT FOUND</h1>} />
         </Switch>
       </div>
