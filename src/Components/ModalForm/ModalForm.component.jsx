@@ -90,16 +90,7 @@ class ModalForm extends Component {
               color="secondary"
               style={{ textTransform: 'none', borderRadius: '24px' }}
               size="large"
-              onClick={() => {
-                axios
-                  .delete(`images/${this.props.currentImgId}`)
-                  .then(() => {
-                    this.props.removeImage(this.props.currentImgId);
-                  })
-                  .then(() => {
-                    this.props.toggleModal();
-                  });
-              }}
+              onClick={() => {}}
             >
               Delete
             </Button>
