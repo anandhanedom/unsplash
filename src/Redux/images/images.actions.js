@@ -48,9 +48,9 @@ export const setCurrentImage = (imgId) => {
 
 //Thunk handled functions
 export const fetchImages = () => {
-  return function (dispatch) {
+  return async function (dispatch) {
     dispatch(fetchImagesRequest());
-    axios
+    await axios
       .get('images')
       .then((res) => {
         const images = res.data;
@@ -58,6 +58,19 @@ export const fetchImages = () => {
       })
       .catch(() => {
         dispatch(fetchImagesFailure('Oops! Something went wrong.'));
+      });
+  };
+};
+
+export const deleteImage = () => {
+  return async function () {
+    await axios
+      .delete(`images/${this.props.currentImgId}`)
+      .then(() => {
+        this.props.removeImage(this.props.currentImgId);
+      })
+      .then(() => {
+        this.props.toggleModal();
       });
   };
 };

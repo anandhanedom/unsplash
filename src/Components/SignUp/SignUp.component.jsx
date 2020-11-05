@@ -1,17 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 
 //Actions
-import { signUp } from '../../Redux/user/user.actions';
 
 //Material UI
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -114,12 +111,12 @@ const SignUp = (props) => {
                 autoComplete="current-password"
               />
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="I want to receive inspiration, marketing promotions and updates via email."
               />
-            </Grid>
+            </Grid> */}
           </Grid>
           <Button
             type="submit"
@@ -127,13 +124,6 @@ const SignUp = (props) => {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={async () => {
-              await props.signUp({
-                email: document.getElementById('email').value,
-                password: document.getElementById('password').value,
-              });
-              await props.history.push('/images');
-            }}
           >
             Sign Up
           </Button>
@@ -153,8 +143,4 @@ const SignUp = (props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  signUp: (userInfo) => dispatch(signUp(userInfo)),
-});
-
-export default connect(null, mapDispatchToProps)(withRouter(SignUp));
+export default SignUp;

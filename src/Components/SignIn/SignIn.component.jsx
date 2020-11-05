@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 //Actions
-import { signIn } from '../../Redux/user/user.actions.js';
 
 //MAterial UI
 import { withStyles } from '@material-ui/styles';
@@ -11,8 +8,8 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -54,8 +51,6 @@ const useStyles = (theme) => ({
 });
 
 class SignIn extends Component {
-  componentDidMount() {}
-
   render() {
     const { classes } = this.props;
     return (
@@ -91,29 +86,16 @@ class SignIn extends Component {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            /> */}
             <Button
               type="submit"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
-              // onClick={() => {
-              //   auth.login(() => {
-              //     this.props.history.push('/images');
-              //   });
-              // }}
-
-              onClick={async () => {
-                await this.props.signIn({
-                  email: document.getElementById('email').value,
-                  password: document.getElementById('password').value,
-                });
-                await this.props.history.push('/images');
-              }}
             >
               Sign In
             </Button>
@@ -142,11 +124,4 @@ class SignIn extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  signIn: (userInfo) => dispatch(signIn(userInfo)),
-});
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(withRouter(withStyles(useStyles)(SignIn)));
+export default withStyles(useStyles)(SignIn);
